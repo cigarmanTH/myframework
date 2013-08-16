@@ -11,6 +11,10 @@ import httplib2
 import settings 
 import simplejson as json
 
+import logging
+#logging.basicConfig()
+logging.getLogger().setLevel(getattr(logging, 'ERROR'))
+
 import ggtsidset
 
 def build_service(credentials, http, api_key=None):
