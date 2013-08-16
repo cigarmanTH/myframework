@@ -27,10 +27,20 @@ def searchprint(keyword):
 
     httpUnauth = httplib2.Http()
     serviceUnauth = build_service(None, httpUnauth, settings.API_KEY)
-    request = serviceUnauth.activities().search(query=keyword)
-    for result in request:
-        print result       
+    request = serviceUnauth.activities().search(query=keyword,maxResults=2 )
+    results = []
+    while ( request != None ):
+        try:
+            result = request.execute(httpUnauth)
+            if 'items' in result:
+                results += result['items']
+                request = serviceUnauth.activities().list_next(request, result)
+        except:
+            print 'serviceUnauth error'
+            print sys.exc_info()[:2]
+#            return
+            continue
 
 if __name__=='__main__':
-    keyword= 'SKE48'
+    keyword = 'Tomoyoshi'
     searchprint(keyword)
