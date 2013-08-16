@@ -28,7 +28,9 @@ def searchprint(keyword):
     httpUnauth = httplib2.Http()
     serviceUnauth = build_service(None, httpUnauth, settings.API_KEY)
     request = serviceUnauth.activities().search(query=keyword)
-            
+    for result in request:
+        print result       
+
 if __name__=='__main__':
-    keyword= '須田'
-    search(keyword)
+    keyword= 'SKE48'
+    searchprint(keyword)
