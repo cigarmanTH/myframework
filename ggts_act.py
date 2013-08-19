@@ -31,31 +31,12 @@ def activityprint(ggtsid):
     
     activities = []
     
-    while ( request != None ):
-        try:
-            activity = request.execute(httpUnauth)
-            if 'items' in activity:
-                activities += activity['items']
-#                request = serviceUnauth.activities().list_next(request, activity)
-        except:
-            print 'serviceUnauth error'
-            print sys.exc_info()[:2]
-            return
-#            continue
+    activity = request.execute(httpUnauth)
+    activities += activity['items']
     item_sub = {}
     if len(activities) > 0:
         for item in activities:
-
-            item_sub['kind'] = item['kind']
-            item_sub['activity_id'] = item['id']
-            item_sub['actor_id'] = item['actor']['id']
-            item_sub['displayName'] = item['actor']['displayName']
-            item_sub['updated'] = item['updated']
-            item_sub['url'] = item['url']
-            item_sub['replies'] = item['object']['replies']['totalItems']
-            item_sub['plusoners'] = item['object']['plusoners']['totalItems']
-            item_sub['activity'] = item['object']['content']
-            pp(item_sub)
+            pp(item)
 
 def pp(obj):
     if isinstance(obj, list) or isinstance(obj, dict):
