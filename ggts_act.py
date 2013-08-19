@@ -33,9 +33,10 @@ def activityprint(ggtsid):
     
     activity = request.execute(httpUnauth)
     activities += activity['items']
-    item_sub = {}
+    
     if len(activities) > 0:
         for item in activities:
+            item['_id'] = item['id'] 
             pp(item)
 
 def pp(obj):
