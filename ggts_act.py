@@ -1,4 +1,4 @@
-#!bin/python
+#! c:/Python26/python.exe
 # coding: utf-8 
 
 # at first time in new environment,run plus_cli.py to get credentials before run this script

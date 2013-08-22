@@ -4,12 +4,11 @@
 # at first time in new environment,run plus_cli.py to get credentials before run this script
 import sys
 import codecs
-#sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
+sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
 import apiclient.discovery
 import httplib2
 import settings 
-import simplejson as json
 
 import logging
 #logging.basicConfig()
@@ -20,4 +19,8 @@ import gactget
 
 if __name__=='__main__':
     for ggtsid in ggtsidset.ggtsids:
-        print gactget(ggtsid)
+        activities = gactget.gact(ggtsid)
+        for activity in activities:
+            for act_key in activity.keys():
+                print activity.get(act_key)
+                print '\n'
