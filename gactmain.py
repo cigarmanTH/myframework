@@ -21,6 +21,12 @@ if __name__=='__main__':
     for ggtsid in ggtsidset.ggtsids:
         activities = gactget.gact(ggtsid)
         for activity in activities:
-            for act_key in activity.keys():
-                print activity.get(act_key)
-                print '\n'
+            print activity['published']
+            print activity['updated']
+            print activity['actor']['displayName']
+            print activity['actor']['id']
+            print activity['object']['content']
+            print activity['object']['attachments'][0]['url']
+            print activity['object']['replies']['totalItems']
+            print activity['object']['plusoners']['totalItems']
+            print activity['object']['resharers']['totalItems']
